@@ -23,6 +23,9 @@ importers:
       '@uniswap/universal-router-sdk':
         specifier: ^4.21.0
         version: 4.21.0(bufferutil@4.0.9)(hardhat@2.27.0(bufferutil@4.0.9)(typescript@5.9.3)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
+      '@uniswap/v3-sdk':
+        specifier: ^3.21.0
+        version: 3.26.0(hardhat@2.27.0(bufferutil@4.0.9)(typescript@5.9.3)(utf-8-validate@5.0.10))
       '@uniswap/v4-sdk':
         specifier: ^1.22.0
         version: 1.22.0(hardhat@2.27.0(bufferutil@4.0.9)(typescript@5.9.3)(utf-8-validate@5.0.10))
@@ -32,6 +35,9 @@ importers:
       ethers:
         specifier: ^5.7.2
         version: 5.8.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      jsbi:
+        specifier: ^4.3.0
+        version: 4.3.2
       next:
         specifier: 16.0.1
         version: 16.0.1(@babel/core@7.28.5)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -3017,6 +3023,9 @@ packages:
 
   jsbi@3.2.5:
     resolution: {integrity: sha512-aBE4n43IPvjaddScbvWRA2YlTzKEynHzu7MqOyTipdHucf/VxS63ViCjxYRg86M8Rxwbt/GfzHl1kKERkt45fQ==}
+
+  jsbi@4.3.2:
+    resolution: {integrity: sha512-9fqMSQbhJykSeii05nxKl4m6Eqn2P6rOlYiS+C5Dr/HPIU/7yZxu5qzbs40tgaFORiw2Amd0mirjxatXYMkIew==}
 
   jsesc@3.1.0:
     resolution: {integrity: sha512-/sM3dO2FOzXjKQhJuo0Q173wf2KOo8t4I8vHy6lF9poUp7bKT0/NHE8fPX23PwfhnykfqnC2xRxOnVw5XuGIaA==}
@@ -8935,6 +8944,8 @@ snapshots:
       argparse: 2.0.1
 
   jsbi@3.2.5: {}
+
+  jsbi@4.3.2: {}
 
   jsesc@3.1.0: {}
 
