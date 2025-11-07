@@ -1,3 +1,4 @@
+import JSBI from 'jsbi';
 import { Pool, Route, Trade } from '@uniswap/v4-sdk';
 import { Currency, CurrencyAmount, Percent, TradeType } from '@uniswap/sdk-core';
 import { PublicClient, parseAbiItem } from 'viem';
@@ -5,7 +6,7 @@ import { TickMath } from '@uniswap/v3-sdk';
 
 import { STATE_VIEW_ABI } from '@/lib/abis';
 import { assertAddress } from '@/lib/config';
-import { findTokenSymbolByAddress, getToken, nativeCurrency } from '@/lib/tokens';
+import { WrappedNativeCurrency, findTokenSymbolByAddress, getToken, nativeCurrency } from '@/lib/tokens';
 
 const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
 const FEE_CANDIDATES = [100, 300, 500, 1000, 2000, 2500, 3000, 5000, 10000];
@@ -36,7 +37,7 @@ export type PoolState = {
 
 let cachedConfig: PoolConfiguration | null = null;
 
-function ensureNativeCurrency(): Currency {
+function ensureNativeCurrency(): WrappedNativeCurrency {
   if (!nativeCurrency) {
     throw new Error('Native currency is not configured');
   }
@@ -198,8 +199,8 @@ export async function buildPool(client: PublicClient): Promise<{ pool: Pool; con
     config.poolKey.fee,
     config.poolKey.tickSpacing,
     config.poolKey.hooks,
-    state.sqrtPriceX96,
-    state.liquidity,
+    state.sqrtPriceX96.toString(),
+    state.liquidity.toString(),
     state.tick,
   );
 
@@ -249,6 +250,6 @@ export function createTrade(
 export function parseSlippage(slippage: string): Percent {
   const value = Number.parseFloat(slippage || '0');
   const bips = Math.round(value * 100);
-  return new Percent(BigInt(bips), BigInt(10_000));
+  return new Percent(JSBI.BigInt(bips), JSBI.BigInt(10_000));
 }
 

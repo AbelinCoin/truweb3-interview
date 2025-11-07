@@ -79,9 +79,10 @@ export function useLiquidity() {
           abi: PERMIT2_ABI,
           functionName: "allowance",
           args: [address, tokenAddress, positionManager],
-        })) as [bigint, bigint, bigint];
+        })) as unknown as [bigint, bigint, bigint];
 
         const now = BigInt(Math.floor(Date.now() / 1000));
+        const expirationValue = Number(now + ONE_YEAR_SECONDS);
 
         if (amount >= requiredAmount && expiration > now + PERMIT_BUFFER_SECONDS) {
           return;
@@ -91,7 +92,7 @@ export function useLiquidity() {
           address: permit2,
           abi: PERMIT2_ABI,
           functionName: "approve",
-          args: [tokenAddress, positionManager, MAX_UINT_160, now + ONE_YEAR_SECONDS],
+          args: [tokenAddress, positionManager, MAX_UINT_160, expirationValue],
           account: address,
         });
       } catch (error) {
@@ -156,7 +157,7 @@ export function useLiquidity() {
       });
 
       const slippageTolerance = parseSlippage(state.slippage);
-      const deadline = BigInt(Math.floor(Date.now() / 1000) + state.deadlineMinutes * 60);
+      const deadline = Math.floor(Date.now() / 1000) + state.deadlineMinutes * 60;
 
       const { amount0, amount1 } = position.mintAmountsWithSlippage(slippageTolerance);
       const amount0WithSlippage = BigInt(amount0.toString());

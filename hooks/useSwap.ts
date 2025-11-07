@@ -119,9 +119,10 @@ export function useSwap() {
           abi: PERMIT2_ABI,
           functionName: "allowance",
           args: [address, tokenAddress, universalRouter],
-        })) as [bigint, bigint, bigint];
+        })) as unknown as [bigint, bigint, bigint];
 
         const now = BigInt(Math.floor(Date.now() / 1000));
+        const expirationValue = Number(now + ONE_YEAR_SECONDS);
 
         if (amount >= requiredAmount && expiration > now + PERMIT_BUFFER_SECONDS) {
           return;
@@ -131,7 +132,7 @@ export function useSwap() {
           address: permit2,
           abi: PERMIT2_ABI,
           functionName: "approve",
-          args: [tokenAddress, universalRouter, MAX_UINT_160, now + ONE_YEAR_SECONDS],
+          args: [tokenAddress, universalRouter, MAX_UINT_160, expirationValue],
           account: address,
         });
       } catch (error) {
@@ -264,17 +265,17 @@ export function useSwap() {
         ],
       })) as [bigint, bigint];
 
-      const inputAmount = CurrencyAmount.fromRawAmount(inputCurrency, amountInRaw);
-      const outputAmount = CurrencyAmount.fromRawAmount(outputCurrency, amountOut);
+      const inputAmount = CurrencyAmount.fromRawAmount(inputCurrency, amountInRaw.toString());
+      const outputAmount = CurrencyAmount.fromRawAmount(outputCurrency, amountOut.toString());
 
       const trade = createTrade(pool, inputAmount, outputAmount, TradeType.EXACT_INPUT);
 
-      const deadline = BigInt(Math.floor(Date.now() / 1000) + 900);
+      const deadline = Math.floor(Date.now() / 1000) + 900;
 
-      const { calldata, value } = SwapRouter.swapCallParameters(trade, {
+      const { calldata, value } = SwapRouter.swapCallParameters(trade as any, {
         recipient: address,
         slippageTolerance,
-        deadline,
+        deadlineOrPreviousBlockhash: deadline.toString(),
       });
 
       const txHash = await walletClient.sendTransaction({

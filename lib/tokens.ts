@@ -8,7 +8,7 @@ const chainId = CHAIN_ID;
 const wethAddress = ADDRESSES.weth;
 const usdcAddress = ADDRESSES.usdc;
 
-class WrappedNativeCurrency extends NativeCurrency {
+export class WrappedNativeCurrency extends NativeCurrency {
   public readonly wrapped: Token;
 
   constructor(override readonly chainId: number) {
@@ -34,7 +34,7 @@ const registry: Record<TokenSymbol, TokenMetadata> = {
   ETH: {
     symbol: "ETH",
     name: "Ether",
-    address: nativeCurrency?.address ?? null,
+    address: nativeCurrency ? (nativeCurrency.address as `0x${string}`) : null,
     decimals: 18,
     icon: "/eth.svg",
   },

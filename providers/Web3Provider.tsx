@@ -19,7 +19,7 @@ const chainMap = {
   [polygon.id]: polygon,
 } as const;
 
-const activeChain = chainMap[CHAIN_ID] ?? sepolia;
+const activeChain = chainMap[CHAIN_ID as keyof typeof chainMap] ?? sepolia;
 
 const wagmiConfig = getDefaultConfig({
   appName: "Uniswap V4 Portal",
