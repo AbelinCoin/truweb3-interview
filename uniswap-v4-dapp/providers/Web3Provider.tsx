@@ -7,17 +7,26 @@ import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RainbowKitProvider, getDefaultConfig, darkTheme } from "@rainbow-me/rainbowkit";
 import { WagmiProvider, http } from "wagmi";
-import { sepolia } from "wagmi/chains";
+import { polygon, sepolia } from "wagmi/chains";
+
+import { CHAIN_ID } from "@/lib/config";
 
 const projectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID ?? "";
 const rpcUrl = process.env.NEXT_PUBLIC_RPC_URL;
 
+const chainMap = {
+  [sepolia.id]: sepolia,
+  [polygon.id]: polygon,
+} as const;
+
+const activeChain = chainMap[CHAIN_ID] ?? sepolia;
+
 const wagmiConfig = getDefaultConfig({
-  appName: "Uniswap V4 Sepolia Portal",
+  appName: "Uniswap V4 Portal",
   projectId: projectId || "demo",
-  chains: [sepolia],
+  chains: [activeChain],
   transports: {
-    [sepolia.id]: rpcUrl ? http(rpcUrl) : http(),
+    [activeChain.id]: rpcUrl ? http(rpcUrl) : http(),
   },
   ssr: true,
 });

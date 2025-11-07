@@ -1,11 +1,12 @@
 import { NativeCurrency, Token } from "@uniswap/sdk-core";
 
+import { CHAIN_ID, ADDRESSES } from "@/lib/config";
 import type { TokenMetadata, TokenSymbol } from "@/types/token";
 
-const chainId = Number(process.env.NEXT_PUBLIC_CHAIN_ID ?? 0);
+const chainId = CHAIN_ID;
 
-const wethAddress = process.env.NEXT_PUBLIC_WETH as `0x${string}` | undefined;
-const usdcAddress = process.env.NEXT_PUBLIC_USDC as `0x${string}` | undefined;
+const wethAddress = ADDRESSES.weth;
+const usdcAddress = ADDRESSES.usdc;
 
 class WrappedNativeCurrency extends NativeCurrency {
   public readonly wrapped: Token;
@@ -13,7 +14,7 @@ class WrappedNativeCurrency extends NativeCurrency {
   constructor(override readonly chainId: number) {
     super(chainId, 18, "ETH", "Ether");
     if (!wethAddress) {
-      throw new Error("Missing NEXT_PUBLIC_WETH env var");
+      throw new Error("Missing WETH address configuration");
     }
     this.wrapped = new Token(chainId, wethAddress, 18, "WETH", "Wrapped Ether");
   }

@@ -2,6 +2,33 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+Create a `.env.local` file in the project root and set the RPC + chain id. The
+addresses for Sepolia (11155111) and Polygon (137) are preloaded via
+configuration, so you only need to override them when pointing to another
+deployment.
+
+```
+NEXT_PUBLIC_RPC_URL=https://sepolia.infura.io/v3/YOUR_KEY
+NEXT_PUBLIC_CHAIN_ID=11155111
+
+# Optional overrides (only needed if you are not using the published defaults)
+# NEXT_PUBLIC_UNIVERSAL_ROUTER=
+# NEXT_PUBLIC_POOL_MANAGER=
+# NEXT_PUBLIC_STATE_VIEW=
+# NEXT_PUBLIC_POSITION_MANAGER=
+# NEXT_PUBLIC_QUOTER=
+# NEXT_PUBLIC_PERMIT2=
+# NEXT_PUBLIC_WETH=
+# NEXT_PUBLIC_USDC=
+```
+
+To switch to Polygon mainnet, update the chain id and RPC URL:
+
+```
+NEXT_PUBLIC_RPC_URL=https://polygon-mainnet.g.alchemy.com/v2/YOUR_KEY
+NEXT_PUBLIC_CHAIN_ID=137
+```
+
 First, run the development server:
 
 ```bash
