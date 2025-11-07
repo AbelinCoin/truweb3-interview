@@ -1,0 +1,25 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" rx="16" fill="#0F172A" />
+  <g filter="url(#shadow)">
+    <circle cx="24" cy="24" r="18" fill="url(#gradient)" />
+  </g>
+  <path d="M24 11L16 25.2L24 20.5V11Z" fill="#E2E8F0" />
+  <path d="M24 20.5L16 25.2L24 30.2V20.5Z" fill="#94A3B8" />
+  <path d="M32 25.2L24 11V20.5L32 25.2Z" fill="#F8FAFC" />
+  <path d="M24 30.2L32 25.2L24 20.5V30.2Z" fill="#CBD5F5" />
+  <path d="M16 27.2L24 35V37L16 27.2Z" fill="#64748B" />
+  <path d="M32 27.2L24 37V35L32 27.2Z" fill="#A5B4FC" />
+  <defs>
+    <radialGradient id="gradient" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(16 14) rotate(54.8) scale(28)">
+      <stop stop-color="#38BDF8" stop-opacity="0.85" />
+      <stop offset="1" stop-color="#0B1120" />
+    </radialGradient>
+    <filter id="shadow" x="3" y="5" width="42" height="42" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feGaussianBlur in="BackgroundImageFix" stdDeviation="3" />
+      <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur" />
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur" result="shape" />
+    </filter>
+  </defs>
+</svg>
+

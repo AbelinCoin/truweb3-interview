@@ -1,0 +1,24 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" rx="16" fill="#0B1120" />
+  <g filter="url(#shadow)">
+    <circle cx="24" cy="24" r="18" fill="#0F172A" />
+    <circle cx="24" cy="24" r="16" fill="url(#blueGradient)" />
+  </g>
+  <path d="M24 13C19.03 13 15 17.03 15 22C15 26.97 19.03 31 24 31C28.97 31 33 26.97 33 22C33 17.03 28.97 13 24 13Z" stroke="#E2E8F0" stroke-width="2" />
+  <path d="M20.4 17.5C20.4 16.45 21.94 15.7 24 15.7C26.06 15.7 27.6 16.45 27.6 17.5C27.6 18.55 26.66 19.15 24.6 19.46C22.54 19.77 21.2 20.5 21.2 21.8C21.2 23.1 22.48 23.98 24.58 24.19C26.68 24.4 27.6 25.25 27.6 26.32C27.6 27.39 26.02 28.14 24 28.14C21.98 28.14 20.4 27.39 20.4 26.32" stroke="#F8FAFC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M18.4 26.4C16.8 25.1 15.9 23.17 15.9 21.08C15.9 18.99 16.8 17.06 18.4 15.76" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" />
+  <path d="M29.6 26.4C31.2 25.1 32.1 23.17 32.1 21.08C32.1 18.99 31.2 17.06 29.6 15.76" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" />
+  <defs>
+    <radialGradient id="blueGradient" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(18 16) rotate(55) scale(28)">
+      <stop stop-color="#3B82F6" stop-opacity="0.85" />
+      <stop offset="1" stop-color="#0B1120" />
+    </radialGradient>
+    <filter id="shadow" x="4" y="4" width="40" height="40" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feGaussianBlur in="BackgroundImageFix" stdDeviation="2.5" />
+      <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur" />
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur" result="shape" />
+    </filter>
+  </defs>
+</svg>
+
