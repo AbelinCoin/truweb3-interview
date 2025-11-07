@@ -1,4 +1,3 @@
-import JSBI from 'jsbi';
 import { Pool, Route, Trade } from '@uniswap/v4-sdk';
 import { Currency, CurrencyAmount, Percent, TradeType } from '@uniswap/sdk-core';
 import { PublicClient, parseAbiItem } from 'viem';
@@ -250,6 +249,6 @@ export function createTrade(
 export function parseSlippage(slippage: string): Percent {
   const value = Number.parseFloat(slippage || '0');
   const bips = Math.round(value * 100);
-  return new Percent(JSBI.BigInt(bips), JSBI.BigInt(10_000));
+  return new Percent(String(bips), '10000');
 }
 

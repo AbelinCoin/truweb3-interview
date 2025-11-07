@@ -272,7 +272,7 @@ export function useSwap() {
 
       const deadline = Math.floor(Date.now() / 1000) + 900;
 
-      const { calldata, value } = SwapRouter.swapCallParameters(trade as any, {
+      const { calldata, value } = SwapRouter.swapCallParameters(trade, {
         recipient: address,
         slippageTolerance,
         deadlineOrPreviousBlockhash: deadline.toString(),
